@@ -1,0 +1,19 @@
+<header>
+    <div>
+        <span class="logo-1">El</span>
+        <span class="logo-2">Blog</span>
+        <span class="logo-3">KR</span>
+    </div>
+</header>
+
+<!-- se subscribe:  blogPost$ | async-->
+<!-- la respuesta de la subscripcion es blogPost -->
+<main *ngIf="blogPosts$ | async as blogPosts">
+    <div class="blog-posts-container" *ngFor="let blogPost of blogPosts.items">
+        <img [src]="blogPost.fields.featuredImage.fields.file.url" alt="">
+        <h2>{{blogPost.fields.title}}</h2>
+        <p class="author">{{blogPost.fields.author}}</p>
+        <p class="summary">{{blogPost.fields.summary}}</p>
+        <a routerLink="/blog/{{blogPost.sys.id}}">Leer más</a>
+    </div>
+</main>

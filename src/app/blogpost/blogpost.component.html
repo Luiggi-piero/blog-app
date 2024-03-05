@@ -1,0 +1,21 @@
+<main *ngIf="blogPost$ | async as blogPost">
+    <div class="post-container">
+        <img [src]="blogPost.fields.featuredImage.fields.file.url" alt="">
+        <h2>{{blogPost.fields.title}}</h2>
+        <p class="author">{{blogPost.fields.author}}</p>
+
+        <div class="content" *ngFor="let paragraph of blogPost.fields.content.content">
+            <ng-container *ngFor="let text of paragraph.content">
+                <span [ngClass]="{'bold': isHighlighted(text)}">
+                    {{text.value}}
+                </span>
+            </ng-container>
+        </div>
+
+        <!-- <div
+            *ngIf="blogPost.fields.content.content" 
+            class="content"
+            [innerHTML]="documentToHtmlStringTemp({nodeType: 'document', content: blogPost.fields.content.content})">
+        </div> -->
+    </div>
+</main>
